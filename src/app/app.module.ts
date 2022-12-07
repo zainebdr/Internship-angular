@@ -7,18 +7,26 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UniversitesComponent } from './universites/universites.component';
 import { ComponentsModule } from './components/components.module';
+import { ContratsComponent } from './contrats/contrats.component';
+import {HttpClientModule} from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    UniversitesComponent
+    UniversitesComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
