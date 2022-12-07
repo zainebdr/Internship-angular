@@ -1,0 +1,71 @@
+
+ <!-- Page content -->
+ <div class="container-fluid mt--7">
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card bg-white shadow">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="text-black mb-0">Liste des etudiants</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-light">
+              <thead class="bg-yellow thead-yellow">
+                
+                    <tr>
+                      <th scope="col">Id etudiant</th>
+                      <th scope="col">Nom etudiant</th>
+                      <th scope="col">Prenom etudiant</th>
+                      <th scope="col">Option etudiant</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+            
+                </thead>
+                <tbody>
+                  <tr *ngFor="let etu of listEtudiant">
+                    
+                    <td>{{etu.idEtudiant}}
+                    </td>
+                    <td>{{etu.nom}}</td>
+                    <td>{{etu.prenom}}</td>
+                    <td>{{etu.option}}</td>
+                    <td>
+        
+                      <button class="btn btn-icon btn-3 btn-primary" (click)="deleteEtid(etu)">
+                        <span class="btn-inner--icon"><i class="ni ni-fat-remove"></i></span>
+                        <span class="btn-inner--text">Supprimer</span>
+                      </button>
+                      &nbsp;
+                      <button class="btn btn-icon btn-3 btn-primary"[routerLink]="['/etudiants/updateEtudiant',etu.idEtudiant]">
+                        <span class="btn-inner--icon"><i class="ni ni-ui-04"></i></span>
+                        <span class="btn-inner--text">Modifier</span>
+                      </button>
+                    
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              &nbsp;
+              <br>
+              <button class="btn btn-icon btn-3 btn-primary mb-3 center" [routerLink]="['/etudiants/addEtudiant']">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+              <span class="btn-inner--text">Ajouter</span>
+            </button>
+
+            </div>
+           
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+<router-outlet></router-outlet>
+    
+  
+  
+  
+  
+  
+  
+  <!-- Button trigger modal -->
+  
