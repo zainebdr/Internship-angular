@@ -1,0 +1,23 @@
+<h1> {{action}} departement</h1>
+<form #f="ngForm">
+  <div class="form-group col-md-6">
+    <label>nom departement</label>
+    <input type="text" name="nomdepartement" [(ngModel)]="departement.nomDepart" class="form-control" required
+      minlength="3" pattern="[a-zA-Z]{3,12}$" #no="ngModel">
+    <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
+      <div *ngIf="no.hasError('required')">this field is required</div>
+      <div *ngIf="no.hasError('minlength')">minlength = 3!</div>
+      <div *ngIf="no.hasError('pattern')">error pattern</div>
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-success" (click)="savedepartement()" [disabled]="f.invalid">
+    save
+  </button>
+  &nbsp;
+  <button type="reset" class="btn btn-warning">
+    reset
+  </button>
+</form>
+
+<div id="notif">{{msg}}</div>

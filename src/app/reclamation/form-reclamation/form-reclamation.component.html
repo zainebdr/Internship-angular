@@ -1,0 +1,37 @@
+<h2 class="">{{action}} Reclamation</h2>
+<form [formGroup]="FormRec" (ngSubmit)="addRec()">
+    <div class="form-group col-md-6">
+      <label for="website">Type de reclamation:</label>
+      <div *ngIf="FormRec.controls['typeReclamation'].invalid">
+        <p  *ngIf="FormRec.controls['typeReclamation'].hasError('required')" class="alert alert-danger">
+          this field is required
+        </p>
+      </div>
+            <select formControlName="typeReclamation" class="form-control">
+                <option *ngFor="let web of typeList">{{web}}</option>
+            </select>
+      </div>
+   <div class="form-group col-md-6">
+    <label>description </label>
+    <textarea type="textarea" formControlName="description" name="description" class="form-control"></textarea>
+    <br>
+    <div *ngIf="FormRec.controls['description'].invalid">
+        <p  *ngIf="FormRec.controls['description'].hasError('required')" class="alert alert-danger">
+          this field is required
+        </p>
+        <p  *ngIf="FormRec.controls['description'].hasError('minlength')" class="alert alert-danger">
+          Enter a sentence not a word
+        </p>
+        
+    </div>
+    <div *ngIf="FormRec.controls['description'].valid">
+      <p class="alert alert-success"> everything is ready</p>
+    </div>
+    <br>
+    </div>
+    <button type="submit" [disabled]="!FormRec.valid" class="btn btn-primary" >
+      save
+    </button>
+  </form>
+  
+  

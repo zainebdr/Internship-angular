@@ -1,55 +1,64 @@
-&nbsp;
+
+
 <form #f="ngForm">
-<div class="card center" style="width: 45rem;">
-    <div class="card-body">
+  <div class="card center" style="width: 45rem;">
+      <div class="card-body">
+      &nbsp;
+      <h2 class="card-title col-lg-6">{{action}} Etudiant</h2>
+      
+    <div class="form-group col-md-6">
+      <p class="card-text"><label>Nom de l'etudiant</label></p>
+      <input type="text"  name="nomEtudiant" [(ngModel)]="Etudiant.nom"
+      class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#no="ngModel">
+      <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
+          <div *ngIf="no.hasError('required')">this field is required</div>
+          <div *ngIf="no.hasError('minlength')">minlength = 3!</div>
+          <div *ngIf="no.hasError('pattern')">error pattern</div>
+      </div>
+    </div>
+  
+    <div class="form-group col-md-6">
+      <p class="card-text"><label>Prenom</label></p>
+      <input type="text"  name="prenomEtudiant" [(ngModel)]="Etudiant.prenom"
+      class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#no="ngModel">
+      <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
+          <div *ngIf="no.hasError('required')">this field is required</div>
+          <div *ngIf="no.hasError('minlength')">minlength = 3!</div>
+          <div *ngIf="no.hasError('pattern')">error pattern</div>
+      </div>
+    </div>
+  
+    <div class="form-group col-md-6">
+      <p class="card-text"><label>Option</label></p>
+      <select name="option" [(ngModel)]="Etudiant.option" class="form-control" required type="text">
+          <option value="GAMIX">GAMIX</option>
+          <option value="SE">SE</option>
+          <option value="SIM">SIM</option>
+          <option value="NIDS">NIDS</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
+          <div *ngIf="no.hasError('required')">this field is required</div>
+      </div>
+    </div>
+    <div  class="form-group col-md-6">
+      <label>Departement</label>
+      <select name="niveau"  class="form-control" type="text" [(ngModel)]="selectedid">
+          <option *ngFor="let d of departListe" value="{{d.idDepart}}">{{d.nomDepart}}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
+        <div *ngIf="no.hasError('required')">this field is required</div>
+    </div>
+    </div>
+    <br>
+    <button class="btn btn-icon btn-3 btn-primary" (click)="saveEtudiant()"[disabled]="f.invalid">
+    <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
+    <span class="btn-inner--text">Valider</span>
+    </button>
     &nbsp;
-    <h2 class="card-title col-lg-6">{{action}} Etudiant</h2>
-    
-  <div class="form-group col-md-6">
-    <p class="card-text"><label>Nom de l'etudiant</label></p>
-    <input type="text"  name="nomEtudiant" [(ngModel)]="Etudiant.nom"
-    class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#no="ngModel">
-    <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
-        <div *ngIf="no.hasError('required')">this field is required</div>
-        <div *ngIf="no.hasError('minlength')">minlength = 3!</div>
-        <div *ngIf="no.hasError('pattern')">error pattern</div>
-    </div>
-  </div>
-
-  <div class="form-group col-md-6">
-    <p class="card-text"><label>Prenom</label></p>
-    <input type="text"  name="prenomEtudiant" [(ngModel)]="Etudiant.prenom"
-    class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#no="ngModel">
-    <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
-        <div *ngIf="no.hasError('required')">this field is required</div>
-        <div *ngIf="no.hasError('minlength')">minlength = 3!</div>
-        <div *ngIf="no.hasError('pattern')">error pattern</div>
-    </div>
-  </div>
-
-  <div class="form-group col-md-6">
-    <p class="card-text"><label>Option</label></p>
-    <select name="option" [(ngModel)]="Etudiant.option" class="form-control" required type="text">
-        <option value="GAMIX">GAMIX</option>
-        <option value="SE">SE</option>
-        <option value="SIM">SIM</option>
-        <option value="NIDS">NIDS</option>
-    </select>
-    <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
-        <div *ngIf="no.hasError('required')">this field is required</div>
-    </div>
-  </div>
-  <br>
-  <button class="btn btn-icon btn-3 btn-primary" (click)="saveEtudiant()"[disabled]="f.invalid">
-  <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
-  <span class="btn-inner--text">Valider</span>
+    <button class="btn btn-icon btn-3 btn-primary" type="reset">
+      <span class="btn-inner--icon"><i class="ni ni-fat-delete"></i></span>
+    <span class="btn-inner--text">Reset</span>
   </button>
-  &nbsp;
-  <button class="btn btn-icon btn-3 btn-primary" type="reset">
-    <span class="btn-inner--icon"><i class="ni ni-fat-delete"></i></span>
-  <span class="btn-inner--text">Reset</span>
-</button>
-</div>
-</div>
-</form>
-
+  </div>
+  </div>
+  </form>
