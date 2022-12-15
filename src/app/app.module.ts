@@ -11,12 +11,20 @@ import { ContratsComponent } from './contrats/contrats.component';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { EtudiantLayoutComponent } from './layouts/etudiant-layout/etudiant-layout.component';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     UniversitesComponent,
+    LoginComponent,
+    RegisterComponent,
+    EtudiantLayoutComponent
 
   ],
   imports: [
@@ -24,11 +32,13 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     NgbModule,
     ComponentsModule,
+    UsersModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    FormsModule
 
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

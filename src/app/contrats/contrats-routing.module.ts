@@ -6,8 +6,8 @@ import { ListContratComponent } from './list-contrat/list-contrat.component';
 
 const routes: Routes = [{ path: '', component: ContratsComponent, children:[
   {path:'',redirectTo: 'list', pathMatch:"full"},
-  {path:'list', component: ListContratComponent},
-  {path:'contrat/update/:idContrat', component: FormContratComponent},] },
+  {path:'listC', component: ListContratComponent},
+  {path:'update/:idContrat', component: FormContratComponent},] },
 
 ];
 

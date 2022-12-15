@@ -11,13 +11,15 @@ export class ContratService {
   selectedContrat: Contrat;
   public contrats: Contrat[];
 
+
   constructor(private http:HttpClient ) { }
   getAllContrat(){
       return this.http.get<Contrat[]>(this.uri+'getC')
   }
-  addContrat(c:Contrat){
+  addContrat(c:Contrat, prenom:string){
     console.log(c)
-    return this.http.post(this.uri+'addC',c)
+    console.log(prenom)
+    return this.http.put(this.uri+'addCtrTo/'+prenom,c)
   }
   deleteContratbyId(id:number){
       return this.http.delete(this.uri+'delC/'+id);

@@ -1,0 +1,76 @@
+
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+
+        </div>
+      </div>
+      <!-- Dark table -->
+      <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Liste utilisateurs</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">UseName</th>
+                    <th scope="col">Emails</th>
+                    <th scope="col">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr *ngFor="let x of data">
+<td>{{ x.username }}</td>
+<td>{{ x.email }}</td>
+<td>
+  <button (click)="delete(x.id)" class="btn btn-danger"> Delete</button>
+  <button (click)="getById(x.id)" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-warning">Edit</button>
+
+</td>
+                 </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="form-outline mb-4">
+        <input [(ngModel)]="username" type="text" id="form3Example3" class="form-control form-control-lg"
+          placeholder="Enter a valid username address" />
+        <label class="form-label" for="form3Example3">Username </label>
+      </div>
+      <div class="form-outline mb-4">
+        <input [(ngModel)]="email" type="email" id="form3Example3" class="form-control form-control-lg"
+          placeholder="Enter a valid email address" />
+        <label class="form-label" for="form3Example3">email </label>
+      </div>
+
+      <!-- Password input -->
+
+
+
+      <!-- <div class="form-outline mb-3">
+          <select [(ngModel)]="role" class="form-control form-control-lg">
+              <option selected disabled>Select</option>
+              <option value="ROLE_ADMIN">Admin</option>
+              <option value="ROLE_USER">User</option>
+
+          </select>
+          <label class="form-label" for="form3Example4">Role</label>
+        </div> -->
+
+
+
+<button (click)="update()" data-dismiss="modal" class="btn btn-success">Modifer</button>
+    </div>
+  </div>
+</div>
