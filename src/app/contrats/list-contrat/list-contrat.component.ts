@@ -24,9 +24,7 @@ export class ListContratComponent implements OnInit {
 
 
 
-
-
-
+  
   ngOnInit(): void {
 
     this.getContrats();
@@ -34,7 +32,6 @@ export class ListContratComponent implements OnInit {
     this.contrat= new Contrat()
     console.log(this.contrat)
     this.getEtudiants();
-    
 
   }
   getEtudiants() {

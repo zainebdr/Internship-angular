@@ -16,7 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { EtudiantLayoutComponent } from './layouts/etudiant-layout/etudiant-layout.component';
 import { UsersModule } from './users/users.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { ContratsModule } from './contrats/contrats.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { UsersModule } from './users/users.module';
     RegisterComponent,
     EtudiantLayoutComponent
 
+
   ],
   imports: [
     BrowserModule,
@@ -33,9 +35,11 @@ import { UsersModule } from './users/users.module';
     NgbModule,
     ComponentsModule,
     UsersModule,
+    ContratsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [authInterceptorProviders],

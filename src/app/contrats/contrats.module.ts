@@ -33,6 +33,10 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     FormsModule,
     ToastrModule.forRoot(),
+  ],
+  exports: [
+    ContratsComponent,
+    ListEtudiantContratComponent
   ]
 })
 export class ContratsModule { }
