@@ -8,6 +8,8 @@ import { ShowUniversiteComponent } from './show-universite/show-universite.compo
 import { ListUniversiteComponent } from './list-universite/list-universite.component';
 import { UpdateUniversiteComponent } from './update-universite/update-universite.component';
 import { ComponentsModule } from '../components/components.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DepartementModule } from '../departement/departement.module';
 
 
 
@@ -21,7 +23,10 @@ import { ComponentsModule } from '../components/components.module';
     imports: [
         CommonModule,
         UniversitesRoutingModule,
-        ComponentsModule
+        ComponentsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DepartementModule,
         
     ]
 })

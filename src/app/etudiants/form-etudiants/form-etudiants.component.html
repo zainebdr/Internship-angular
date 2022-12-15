@@ -1,0 +1,62 @@
+
+
+<form #f="ngForm">
+  <div class="card center" style="width: 45rem;">
+      <div class="card-body">
+      &nbsp;
+      <h2 class="card-title col-lg-6">{{action}} Etudiant</h2>
+      
+    <div class="form-group col-md-6">
+      <p class="card-text"><label>Nom de l'etudiant</label></p>
+      <input type="text" [(ngModel)]="Etudiant.nom" name="nomEtudiant" class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#n="ngModel">
+      <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+        <div *ngIf="n.hasError('required')">this field is required</div>
+        <div *ngIf="n.hasError('minlength')">minlength = 3!</div>
+        <div *ngIf="n.hasError('pattern')">error pattern</div>
+    </div>
+    </div>
+  
+    <div class="form-group col-md-6">
+      <p class="card-text"><label>Prenom</label></p>
+      <input type="text" [(ngModel)]="Etudiant.prenom" name="prenomEtudiant" class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#p="ngModel">
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+        <div *ngIf="p.hasError('required')">this field is required</div>
+        <div *ngIf="p.hasError('minlength')">minlength = 3!</div>
+        <div *ngIf="p.hasError('pattern')">error pattern</div>
+    </div>
+    </div>
+  
+    <div class="form-group col-md-6">
+      <p class="card-text"><label>Option</label></p>
+      <select [(ngModel)]="Etudiant.option" name="option" class="form-control"#o="ngModel" required  >
+          <option value="GAMIX">GAMIX</option>
+          <option value="SE">SE</option>
+          <option value="SIM">SIM</option>
+          <option value="NIDS">NIDS</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="o.invalid && o.touched">
+          <div *ngIf="o.hasError('required')">this field is required</div>
+      </div>
+    </div>
+    <div  class="form-group col-md-6">
+      <label>Departement</label>
+      <select name="niveau"  class="form-control" type="text" [(ngModel)]="selectedid" name="option" class="form-control"#de="ngModel" required  >
+          <option *ngFor="let d of departListe" value="{{d.idDepart}}">{{d.nomDepart}}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="de.invalid && de.touched">
+        <div *ngIf="de.hasError('required')">this field is required</div>
+    </div>
+    </div>
+    <br>
+    <button class="btn btn-icon btn-3 btn-primary" (click)="saveEtudiant()"[disabled]="f.invalid">
+    <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
+    <span class="btn-inner--text">Valider</span>
+    </button>
+    &nbsp;
+    <button class="btn btn-icon btn-3 btn-primary" type="reset">
+      <span class="btn-inner--icon"><i class="ni ni-fat-delete"></i></span>
+    <span class="btn-inner--text">Reset</span>
+  </button>
+  </div>
+  </div>
+  </form>

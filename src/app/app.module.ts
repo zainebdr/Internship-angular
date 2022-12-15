@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,26 +17,33 @@ import { EtudiantLayoutComponent } from './layouts/etudiant-layout/etudiant-layo
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContratsModule } from './contrats/contrats.module';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    UniversitesComponent,
+  declarations: [AppComponent, AdminLayoutComponent, UniversitesComponent,
     LoginComponent,
     RegisterComponent,
     EtudiantLayoutComponent
 
-
-  ],
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ComponentsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      tapToDismiss:true
+      }),
     UsersModule,
     ContratsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    
     FormsModule,
     ReactiveFormsModule
 
@@ -45,4 +51,4 @@ import { ContratsModule } from './contrats/contrats.module';
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

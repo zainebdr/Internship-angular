@@ -1,0 +1,53 @@
+#notif {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: rgb(235, 56, 11);
+  color: rgb(255, 255, 255);
+  text-align: left;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 5;
+  left: 10px;
+  bottom: 30px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.del {
+  background-color: rgb(235, 56, 11);
+}
+
+.update {
+  background-color: rgb(31, 148, 27);
+}
+
+.show-bar {
+  visibility: visible !important;
+  animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+.settings {
+  cursor: pointer;
+}

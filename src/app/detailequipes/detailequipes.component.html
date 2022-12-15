@@ -1,0 +1,71 @@
+
+ <!-- Page content -->
+ <div class="container-fluid mt--7">
+  
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card bg-default shadow">
+          <div class="card-header bg-transparent border-0 d-flex justify-content-around ">
+            <h3 class="text-white ">{{title}}</h3>
+            <app-searchbar (changeSearch)="OnSearchTextEntered($event)"></app-searchbar>
+            <app-form-detail-equipes></app-form-detail-equipes>
+          </div>
+
+          <div *ngFor="let e of listEquipe">
+          <div *ngIf="searchText === '' || e.thematique.toLowerCase().includes(searchText)" class="table-responsive">
+          <div class="table-responsive">
+            <table class="table align-items-center table-dark table-flush">
+              <thead class="thead-dark">
+                
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">Salle</th>
+                      <th scope="col">Thematique</th>
+                      <th scope="col">Action </th>
+                    </tr>
+            
+                </thead>
+                <tbody>
+                  <tr >
+                
+                    <td>{{e.idEqp}}</td>
+                    <td>{{e.salle}}</td>
+                    <td>{{e.thematique}}</td>
+                    <td>
+                        &nbsp;
+                      <button class="btn btn-sm btn-danger" (click)="deleteEquipe(e)">
+                        delete
+                      </button>
+                      &nbsp;
+                      <a  class="btn btn-sm btn-warning" [routerLink]="['/detailequipes/updateDetEqp' ,e.idEqp]" (click)="functionedit(e.idEqp)">
+                        update
+                      </a>
+                      &nbsp;
+            
+                  
+                    </td>
+              
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>  
+           
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+<router-outlet></router-outlet>
+    
+  
+  
+  
+  
+  
+  
+  <!-- Button trigger modal -->
+  

@@ -1,0 +1,79 @@
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="d-flex justify-content-between align-items-center card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">{{title}}</h3>
+
+          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0" ng-reflect-ng-class="[object Object]">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control search_depts container"
+                 placeholder="Search" [(ngModel)]="searchText">
+               >
+              </div>
+            </div>
+          </form>
+
+          <button class="btn btn-round btn-primary " [routerLink]="['/departement/addep']">ADD</button>
+        </div>
+        <div class="table-responsive p-5">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+
+              <tr>
+                <th scope="col"> id &nbsp;<i class="fa fa-sort"></i></th>
+                <th scope="col">nom Departement</th>
+                <th scope="col">Action </th>
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of listdepartement| search: searchText | paginate
+                  : {
+                      itemsPerPage: tableSize,
+                      currentPage: page,
+                      totalItems: count
+                    };
+              let i = index ">
+                <td>{{e.idDepart}}</td>
+                <td>{{e.nomDepart}}</td>
+
+                <td>
+
+                  &nbsp;
+                  <button class="btn btn-sm btn-danger" (click)="deletedepartement(e)">
+                    delete
+                  </button>
+                  &nbsp;
+                  <a class="btn btn-sm btn-warning" [routerLink]="['/departement/updatedep',e.idDepart]">
+                    update
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="notif">{{msg}}</div>
+<router-outlet></router-outlet>
+
+
+
+
+
+<!-- Button trigger modal -->

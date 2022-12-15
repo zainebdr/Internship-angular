@@ -1,0 +1,38 @@
+
+  <h1> {{action}} Equipe</h1>
+  <form #f="ngForm">
+    <div class="form-group col-md-6">
+      <label>nom Equipe</label>
+      <input type="text"  name="nomEquipe" [(ngModel)]="Equipe.nomEquipe"
+      class="form-control" required minlength="3" pattern="[a-zA-Z]{3,12}$"#no="ngModel">
+      <div class="alert alert-danger" *ngIf="no.invalid && no.touched">
+          <div *ngIf="no.hasError('required')">this field is required</div>
+          <div *ngIf="no.hasError('minlength')">minlength = 3!</div>
+          <div *ngIf="no.hasError('pattern')">error pattern</div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Niveau</label>
+      <select name="niveau" [(ngModel)]="Equipe.niveau" class="form-control" type="text">
+          <option value="EXPERT">EXPERT</option>
+          <option value="JUNIOR">JUNIOR</option>
+          <option value="SENIOR">SENIOR</option>
+      </select>
+    </div>
+    <div  class="form-group col-md-6">
+      <label>Available Equipe</label>
+      <select name="niveau"  class="form-control" type="text" [(ngModel)]="selectedid">
+          <option *ngFor="let r of AvailableID" value="{{r.idEqp}}">{{r.idEqp}}</option>
+      </select>
+    </div>
+    <br>
+    <button class="btn btn-success" (click)="saveEquipe()"
+    [disabled]="f.invalid">
+      save
+    </button>
+    &nbsp;
+    <button type="reset" class="btn btn-warning">
+      reset
+    </button>
+  </form>
+

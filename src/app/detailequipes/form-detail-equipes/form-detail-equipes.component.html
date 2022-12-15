@@ -1,0 +1,58 @@
+<button class="btn btn-primary"  #popupbtn id="popupbtn" (click)="open()">Add New</button>
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h1 class="modal-title" id="modal-basic-title">{{action}} detail</h1>
+      <button type="button" #closebtn class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"> X</button>
+  </div>
+  <div class="modal-body "  >
+        <form [formGroup]="FormDet" (ngSubmit)="addRec()">
+            <div class="form-group col-md-12">
+              <label for="website">Salle :</label>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="number" formControlName="salle" name="salle" class="form-control" >
+                </div>
+              </div>
+              <div *ngIf="FormDet.controls['salle'].invalid">
+                <p  *ngIf="FormDet.controls['salle'].hasError('required')" class="alert alert-danger">
+                  this field is required
+                </p>
+                <p  *ngIf="FormDet.controls['salle'].hasError('min')" class="alert alert-danger">
+                  The value can't be under 0 
+                </p>
+              </div>
+            </div>
+          <div class="form-group col-md-12">
+            <label>Thematique</label>
+            <div class="col-md-12">
+                <div class="form-group">
+                  <input  type="textarea" formControlName="thematique" name="thematique" class="form-control">
+                </div>
+              </div>
+            <br>
+            <div *ngIf="FormDet.controls['thematique'].invalid">
+                <p  *ngIf="FormDet.controls['thematique'].hasError('required')" class="alert alert-danger">
+                  this field is required
+                </p>
+                
+            </div>
+            <div *ngIf="FormDet.controls['thematique'].valid">
+              <p class="alert alert-success"> everything is ready</p>
+            </div>
+            <br>
+            </div>
+            <button type="submit" [disabled]="!FormDet.valid" class="btn btn-primary" (click)="modal.close('Save click')">
+              save
+            </button>
+        </form>
+  
+      </div>
+    <div class="modal-footer">
+        <button style="display: none;" type="button" class="btn btn-outline-dark"
+            >Save</button>
+    </div>
+</ng-template>
+
+
+<hr>
+
