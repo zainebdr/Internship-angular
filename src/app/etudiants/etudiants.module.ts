@@ -7,6 +7,7 @@ import { FormEtudiantsComponent } from './form-etudiants/form-etudiants.componen
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EtudiantFrontComponent } from './etudiant-front/etudiant-front.component';
 
 
 
@@ -15,13 +16,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
   EtudiantsComponent,
   FormEtudiantsComponent,
-  SearchComponent
+  SearchComponent,
+  EtudiantFrontComponent
   ],
   imports: [
     CommonModule,
     EtudiantsRoutingModule,
     FormsModule,
     NgxPaginationModule,
+    
   ]
 })
 export class EtudiantsModule { }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Departement } from 'src/app/core/model/departement';
 import { DepartementService } from 'src/app/core/service/departement.service';
+import { UniversiteService } from 'src/app/core/service/universite.service';
 
 @Component({
   selector: 'app-departementform',
@@ -10,14 +11,19 @@ import { DepartementService } from 'src/app/core/service/departement.service';
 })
 export class DepartementformComponent implements OnInit {
   public departement: Departement;
-  public action: String;
+  public action: String = 'ADD';
 
   public msg = '';
+
+  @Input()
+  universite = '';
+  @Output() addedResult = new EventEmitter<string>();
 
   constructor(
     private departementService: DepartementService,
     private route: Router,
-    private currentroute: ActivatedRoute
+    private currentroute: ActivatedRoute,
+    private universiteService: UniversiteService
   ) {}
 
   ngOnInit(): void {
@@ -48,12 +54,20 @@ export class DepartementformComponent implements OnInit {
       );
     } else {
       this.departementService.adddep(this.departement).subscribe(
-        () => this.route.navigate(['/departement']),
         () => {
-          console.log('error'),
-            () => {
-              console.log('complete');
-            };
+          if (this.universite) {
+            this.departementService.getAllDep().subscribe((data) => {
+              let id = data[data.length - 1].idDepart;
+              this.universiteService.addDepartementToUniversite(id,this.universite).subscribe(() => {
+                this.addedResult.emit("Departement ajouté, id du dep : " + id);
+              });
+            });
+          } else {
+            this.route.navigate(['/departement']);
+          }
+        },
+        () => {
+          this.addedResult.emit('error'), () => {};
         }
       );
     }

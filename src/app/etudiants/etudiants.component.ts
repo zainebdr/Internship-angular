@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Etudiant } from '../core/model/Etudiants';
 import { EtudiantsService } from '../core/service/etudiants.service';
 
+
 @Component({
   selector: 'app-etudiants',
   templateUrl: './etudiants.component.html',

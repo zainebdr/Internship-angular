@@ -3,3 +3,8 @@
   margin-left: -37px;
   margin-right: -37px;
 }
+
+::ng-deep ngb-modal-backdrop {
+  z-index: -1 !important;
+  opacity: 0.16;
+}

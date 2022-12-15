@@ -20,6 +20,9 @@ import { SearchPipe } from './search.pipe';
     FormsModule,
     NgxPaginationModule,
     
+  ],
+  exports:[
+    DepartementformComponent
   ]
 })
 export class DepartementModule { }

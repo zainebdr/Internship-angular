@@ -29,4 +29,8 @@ export class UniversiteService {
   deleteUniversite(id: number) {
     return this.http.delete(this.uri + 'delUni/' + id);
   }
+
+  addDepartementToUniversite(idDep, IdUniv) {
+    return this.http.post(this.uri + 'addUniDep/' + IdUniv + '/' + idDep,{});
+  }
 }

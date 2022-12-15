@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Universite } from 'src/app/core/model/universite';
 import { UniversiteService } from 'src/app/core/service/universite.service';
 
@@ -9,8 +11,11 @@ import { UniversiteService } from 'src/app/core/service/universite.service';
 })
 export class ListUniversiteComponent implements OnInit {
   listUniversites: Universite[];
+  chosenUniversite:any;
 
-  constructor(private serviceUniversite: UniversiteService) {}
+  @ViewChild('content') addview !: ElementRef
+
+  constructor(private serviceUniversite: UniversiteService,private modalService: NgbModal, private toastrService: ToastrService) {}
 
   ngOnInit(): void {
     this.getUniversites();
@@ -33,5 +38,28 @@ export class ListUniversiteComponent implements OnInit {
     let index = this.listUniversites.indexOf(univ);
     this.listUniversites.splice(index,1);
     
+  }
+
+
+  open() {
+    this.modalService.open(this.addview).result.then((result) => {
+    }, (reason) => {
+      console.log("ena"+reason);
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  hi(msg)
+  {
+    
+    this.toastrService.success("Ajout departement: "+ msg, "succès")
   }
 }

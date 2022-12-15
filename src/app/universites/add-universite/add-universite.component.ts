@@ -24,9 +24,11 @@ export class AddUniversiteComponent implements OnInit {
 
   addUniversity() {
     console.log(this.addUniversityForm.value);
-    this.serviceUniversite.addUniversite(this.addUniversityForm.value).subscribe();
-    //this.router.navigate(['/universite/']);
+    this.serviceUniversite.addUniversite(this.addUniversityForm.value).subscribe(()=>{
+      this.router.navigate(['/universite/']);
 
+    });
+  
       
   }
   resetForm() {
