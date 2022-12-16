@@ -36,7 +36,8 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   exports: [
     ContratsComponent,
-    ListEtudiantContratComponent
+    ListEtudiantContratComponent,
+    ListContratComponent
   ]
 })
 export class ContratsModule { }

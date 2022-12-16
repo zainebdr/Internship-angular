@@ -7,6 +7,7 @@ import { FormDetailEquipesComponent } from './form-detail-equipes/form-detail-eq
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -17,9 +18,10 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
   ],
   imports: [
     CommonModule,
-    DetailequipesRoutingModule,    
+    DetailequipesRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule
 
 
   ]

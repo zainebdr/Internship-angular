@@ -6,6 +6,8 @@ import { DepartementformComponent } from './departementform/departementform.comp
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './search.pipe';
+import { ComponentsModule } from '../components/components.module';
+import { ListEtudiantDepartComponent } from './list-etudiant-depart/list-etudiant-depart.component';
 
 
 
@@ -13,13 +15,15 @@ import { SearchPipe } from './search.pipe';
   declarations: [
     DepartementComponent,
     DepartementformComponent,
-    SearchPipe],
+    SearchPipe,
+    ListEtudiantDepartComponent],
   imports: [
     CommonModule,
     DepartementRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    
+    ComponentsModule,
+
   ],
   exports:[
     DepartementformComponent

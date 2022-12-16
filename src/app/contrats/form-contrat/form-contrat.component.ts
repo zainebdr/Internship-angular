@@ -34,7 +34,7 @@ export class FormContratComponent implements OnInit {
   onSubmit(form: NgForm){
   //console.log(id)
     this.contratService.addContrat(this.contrat,this.prenomE).subscribe(
-      ()=>this.router.navigate(['/list'])
+      ()=>this.router.navigate(['/dashbAdm'])
     )
     const toast = this.toast.success('update successfully', 'done', {
       timeOut: 3000,

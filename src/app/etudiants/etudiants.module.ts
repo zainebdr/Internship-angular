@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EtudiantFrontComponent } from './etudiant-front/etudiant-front.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -17,14 +18,16 @@ import { EtudiantFrontComponent } from './etudiant-front/etudiant-front.componen
   EtudiantsComponent,
   FormEtudiantsComponent,
   SearchComponent,
-  EtudiantFrontComponent
+  EtudiantFrontComponent,
+
   ],
   imports: [
     CommonModule,
     EtudiantsRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    
+    ComponentsModule
+
   ]
 })
 export class EtudiantsModule { }

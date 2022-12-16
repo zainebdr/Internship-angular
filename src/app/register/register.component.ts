@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../core/service/auth.service';
 import { TokenStorageService } from '../core/service/token-storage.service';
 
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService,private tokenStorageService: TokenStorageService) { }
+  constructor(private authService: AuthService,private tokenStorageService: TokenStorageService,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+
       },
       err => {
         this.errorMessage = err.error.message;
@@ -41,4 +43,14 @@ export class RegisterComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+
+
+
 }
+
+
+
+
+
+

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
 import { UniversitesComponent } from './universites/universites.component';
 import { ComponentsModule } from './components/components.module';
 import { ContratsComponent } from './contrats/contrats.component';
@@ -20,12 +20,20 @@ import { ContratsModule } from './contrats/contrats.module';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderModule } from 'ngx-order-pipe';
+import { EquipesModule } from './equipes/equipes.module';
+import { ProfileComponent } from './layouts/profile/profile.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+//import { ListEquipeEtudiantComponent } from './equipes/list-equipe-etudiant/list-equipe-etudiant.component';
+
 
 @NgModule({
-  declarations: [AppComponent, AdminLayoutComponent, UniversitesComponent,
+  declarations: [AppComponent, UniversitesComponent,
     LoginComponent,
     RegisterComponent,
-    EtudiantLayoutComponent
+    EtudiantLayoutComponent,
+    ProfileComponent,
+    AdminLayoutComponent,
+
 
 ],
   imports: [
@@ -42,8 +50,10 @@ import { OrderModule } from 'ngx-order-pipe';
       }),
     UsersModule,
     ContratsModule,
+
     HttpClientModule,
-    
+
+
     FormsModule,
     ReactiveFormsModule
 

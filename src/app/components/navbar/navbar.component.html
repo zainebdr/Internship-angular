@@ -27,7 +27,7 @@
             </div>
           </div>
         </a>
-        <button class="button"  (click)="logout()">log</button>
+
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">Welcome!</h6>
@@ -49,9 +49,9 @@
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">
+          <a (click)="logout()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
-            <span>Logout</span>
+            <span >Logout</span>
           </a>
         </div>
       </li>

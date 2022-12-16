@@ -18,6 +18,7 @@ export class ListEtudiantContratComponent implements OnInit {
   public list: Contrat[];
   closeResult: string;
   public contrat: Contrat
+  public etudlist: Etudiant
   public etudiantList: Etudiant[]
   public prenomE: string
   constructor(public   contratService:ContratService, public etudiantService:EtudiantsService, private route: ActivatedRoute,  private modalService: NgbModal,public toast: ToastrService,) { }
@@ -30,16 +31,18 @@ export class ListEtudiantContratComponent implements OnInit {
     this.getContrats();
 
     this.contrat= new Contrat()
-    console.log(this.contrat)
+    this.contrat= new Contrat()
+    console.log(this.getContrats())
     this.getEtudiants();
 
   }
   getEtudiants() {
     this.etudiantService.getAllEtudiants().subscribe( (data:Etudiant[])=>
-    {
+    {for(let i=0;i<this.etudiantList.length;i++){
+      
       this.etudiantList=data;
         console.log("hedha l etudiant",this.etudiantList=data)
-      }
+      }}
     )
   }
 

@@ -1,4 +1,3 @@
-
 <app-siebaretud></app-siebaretud>
 <div class="main-content">
 
@@ -102,93 +101,107 @@
         </div>
       </div>
     </div>
-
-      <!-- Table -->
+<!-- Page content -->
 
 <div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div
+          class="d-flex justify-content-lg-around card-header bg-transparent border-0"
+        >
+          <h3 class="text-white mb-0">{{ title }}</h3>
+          <button
+            class="btn btn-round btn-info"
+            [routerLink]="['/equipes/add']"
+          >
+            ADD
+          </button>
+        </div>
 
-      <!-- Table -->
-      <div class="row">
-        <div class="col">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <h3 class="mb-0">Liste des Contrats</h3>
-            </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" (click)="sort('id')">
+                  id &nbsp;
+                  <i class="fa fa-sort"></i>
+                </th>
+                <th scope="col" (click)="sort('nomEquipe')">
+                  Nom Equipe &nbsp;
+                  <i class="fa fa-sort"></i>
+                </th>
+                <th scope="col">niveau Equipe</th>
+                <th scope="col">Detail Equipe</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let e of listEquipe
+                    | orderBy: key:reverse
+                    | paginate: { itemsPerPage: 4, currentPage: p }
+                "
+              >
+                <td>{{ e.idEquipe }}</td>
+                <td>{{ e.nomEquipe }}</td>
+                <td>{{ e.niveau }}</td>
+                <td>{{ e.detailEquipe1.idEqp }}</td>
+                <td>
+                  &nbsp;
+                  <button
+                    class="btn btn-sm btn-danger"
+                    (click)="deleteEquipe(e)"
+                  >
+                    delete
+                  </button>
+                  &nbsp;
+                  <a
+                    class="btn btn-sm btn-warning"
+                    [routerLink]="[
+                      '/equipes/updateEqp',
+                      e.idEquipe,
+                      e.detailEquipe1.idEqp
+                    ]"
+                  >
+                    update
+                  </a>
+                  &nbsp;
+                  <i
+                    class="fa fa-info-circle fa-2x"
+                    aria-hidden="true"
+                    style="cursor: pointer;"
+                    (click)="changeText[e.idEquipe] = !changeText[e.idEquipe]"
+                  ></i>
+                  <span *ngIf="!changeText[e.idEquipe]"></span>
+                  <span *ngIf="changeText[e.idEquipe]"class="">
+                    <div class="d-flex  justify-content-center">
+                    <p  >Numero de salle---></p>
+                    &nbsp;
+                    <p>{{ e.detailEquipe1.salle }}</p>
+                  </div>
+                  <div class="d-flex  justify-content-center">
+                    <p  >Thematique---></p>
+                    <p>{{ e.detailEquipe1.thematique }}</p>
+                  </div>
+                  </span>
 
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Date debut</th>
-                    <th scope="col">date fin</th>
-                    <th scope="col">archive</th>
-                    <th scope="col">specialite</th>
-
-
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let list of list">
-                    <th scope="row">
-
-
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">{{list.dateDebutContrat}}</span>
-
-                      </div>
-
-                    <td>
-                      <span class="mb-0 text-sm bold">{{list.dateFinContrat}}</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> {{list.archive}}
-                      </span>
-                    </td>
-                    <td>
-                      {{list.specialite}}
-                    </td>
-
-                    <td style="text-align: center">
-
-                    </td>
-
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-            <div class="card-footer py-4">
-              <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                      <i class="fas fa-angle-left"></i>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="javascript:void(0)">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)">
-                      <i class="fas fa-angle-right"></i>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls  (pageChange)="p = $event" class="my-pagination"></pagination-controls>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
 
-    </div>
-    <app-footer></app-footer>
-    </div>
+<router-outlet></router-outlet>
+
+<!-- Button trigger modal -->
+</div>
+<app-footer></app-footer>
+</div>

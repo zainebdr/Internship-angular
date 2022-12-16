@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from 'src/app/core/service/token-storage.service';
+import { TokenStorageService } from '../../core/service/token-storage.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,6 +7,7 @@ import { TokenStorageService } from 'src/app/core/service/token-storage.service'
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
+
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -33,5 +34,4 @@ export class AdminLayoutComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
-
 }
