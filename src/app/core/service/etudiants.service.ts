@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Etudiant } from '../model/Etudiants';
 import { Observable, Subject} from 'rxjs';
 import { DepartementService } from './departement.service';
+import { Contrat } from '../model/contrat';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,13 +39,13 @@ export class EtudiantsService {
 
   countEtudiant(): Observable<any>{
     return this.http.get(this.uri+'getcount',{ responseType: 'text' })
-    
+
   }
 
   pourcentage():Observable<any>{
-    
+
     return this.http.get(this.uri+'getOption'+"/GAMIX"+"/SE"+"/NIDS"+"/SIM",{responseType: 'text'})
-    
+
   }
 
   trie(){
@@ -61,5 +62,10 @@ export class EtudiantsService {
 
   findListDept(){
   return this.http.get(this.uri+'getD')
+}
+
+
+assignEtudtoContrat(c:Contrat, prenom:string){
+  return this.http.put(this.uri+'addCtrTo/'+prenom,c)
 }
 }

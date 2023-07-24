@@ -9,6 +9,8 @@ import { SearchComponent } from './search/search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EtudiantFrontComponent } from './etudiant-front/etudiant-front.component';
 import { ComponentsModule } from '../components/components.module';
+import { ContratsComponent } from '../contrats/contrats.component';
+import { ContratsModule } from '../contrats/contrats.module';
 
 
 
@@ -26,7 +28,8 @@ import { ComponentsModule } from '../components/components.module';
     EtudiantsRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    ComponentsModule
+    ComponentsModule,
+    ContratsModule
 
   ]
 })

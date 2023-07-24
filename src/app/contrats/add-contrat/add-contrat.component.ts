@@ -7,14 +7,13 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Etudiant } from 'src/app/core/model/etudiant';
-import { EtudiantsService } from 'src/app/core/service/etudiant.service';
-
+import { EtudiantsService } from 'src/app/core/service/etudiants.service';
 @Component({
-  selector: 'app-list-contrat',
-  templateUrl: './list-contrat.component.html',
-  styleUrls: ['./list-contrat.component.scss']
+  selector: 'app-add-contrat',
+  templateUrl: './add-contrat.component.html',
+  styleUrls: ['./add-contrat.component.scss']
 })
-export class ListContratComponent implements OnInit {
+export class AddContratComponent implements OnInit {
   public list: Contrat[];
   closeResult: string;
   public contrat: Contrat
@@ -23,29 +22,22 @@ export class ListContratComponent implements OnInit {
 
 
 
+  @Input()
+  etudiant = '';
+  @Output() addedResult = new EventEmitter<string>();
 
 
 
-  constructor(public   contratService:ContratService, public etudiantService:EtudiantsService, private route: ActivatedRoute,  private modalService: NgbModal,public toast: ToastrService,) { }
+
+
+  constructor(public   contratService:ContratService, public etudiantService:EtudiantsService, private route: ActivatedRoute,  private modalService: NgbModal,public toast: ToastrService) { }
+
 
 
   ngOnInit(): void {
-
-    this.getContrats();
-
     this.contrat= new Contrat()
-    console.log(this.contrat)
-    this.getEtudiants();
+  }
 
-  }
-  getEtudiants() {
-    this.etudiantService.getAllEtudiants().subscribe( (data:Etudiant[])=>
-    {
-      this.etudiantList=data;
-        console.log("hedha l etudiant",this.etudiantList=data)
-      }
-    )
-  }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
@@ -67,10 +59,10 @@ export class ListContratComponent implements OnInit {
   onSubmit(form: NgForm) {
 
     console.log(form.value)
-    console.log(this.prenomE)
-    this.contratService.addContrat(form.value,this.prenomE).subscribe((res) => {
+    console.log("hedha prenom",this.etudiant)
+    this.etudiantService.assignEtudtoContrat(form.value,this.etudiant).subscribe((res) => {
       this.resetForm(form)
-     this.refreshCandidatList();
+      this.addedResult.emit("Contrat ajouté");
 
      const toast = this.toast.success('saved successfully', 'done', {
       timeOut: 3000,
@@ -90,7 +82,6 @@ export class ListContratComponent implements OnInit {
 
     };
   }
-
   refreshCandidatList() {
 
     this.contratService.getAllContrat().subscribe( (data:Contrat[])=>
@@ -103,23 +94,4 @@ export class ListContratComponent implements OnInit {
 
   }
 
-
-  getContrats():void{
-    this.contratService.getAllContrat().subscribe( (data:Contrat[])=>
-    {
-
-        console.log(this.list=data)
-      }
-    )
-
-  }
-
-  delete(p: Contrat) {
-    if (confirm('Are you sure to delete this record ?') == true) {
-    let i = this.list.indexOf(p);
-    this.contratService.deleteContratbyId(p.idContrat).subscribe(
-      ()=>this.list.splice(i, 1)
-    )
-    }
-  }
 }

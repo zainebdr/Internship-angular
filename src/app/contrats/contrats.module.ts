@@ -12,6 +12,7 @@ import { ComponentsModule } from '../components/components.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { AddContratComponent } from './add-contrat/add-contrat.component';
 
 
 
@@ -22,7 +23,8 @@ import { ToastrModule } from 'ngx-toastr';
     ListContratComponent,
 
     ListEtudiantContratComponent,
-    FormContratComponent
+    FormContratComponent,
+    AddContratComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { ToastrModule } from 'ngx-toastr';
   exports: [
     ContratsComponent,
     ListEtudiantContratComponent,
-    ListContratComponent
+    ListContratComponent,
+    AddContratComponent
   ]
 })
 export class ContratsModule { }

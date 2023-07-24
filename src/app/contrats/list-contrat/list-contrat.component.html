@@ -147,8 +147,10 @@
                       <span class="mb-0 text-sm bold">{{list.dateFinContrat}}</span>
                     </td>
                     <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> {{list.archive}}
+                      <span class="badge badge-dot mr-4" [ngStyle]="{color : list.archive=== false ?'Red':'Green'}">
+
+
+                        <i  class="bg"></i> {{list.archive}}
                       </span>
                     </td>
                     <td>
@@ -386,7 +388,7 @@
     <app-footer></app-footer>
     </div>
 
-      <!-- Button trigger modal -->
+
 
       <!-- Dark table -->
       <!-- <div class="row mt-5">

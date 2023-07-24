@@ -32,4 +32,8 @@ export class ContratService {
   updateContrat(c:Contrat){
     return this.http.put(this.uri+'putC/'+c.idContrat,c)
   }
+  getAllContratEtud(prenom:string){
+    return this.http.get<Contrat[]>(this.uri+'getContratsEtudiantByPre/'+prenom)
+}
+
 }

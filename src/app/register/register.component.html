@@ -5,7 +5,7 @@
         <div class="col-lg-5 col-md-6">
           <img src="./assets/img/brand/logokaddem.png" style="width: 300px;"   alt="...">
           <h1 class="text-white"></h1>
-          
+
         </div>
       </div>
     </div>
@@ -41,32 +41,21 @@
           </div>
 
           <form
-          name="form"
-          (ngSubmit)="f.form.valid && onSubmit()"
-          #f="ngForm"
-          novalidate>
+          name="form" [formGroup]="registryForm"
+          (ngSubmit)="onSubmit()"
+
+          >
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
                 <input  type="text"
+                formControlName="username"
                 class="form-control"
                 name="username"
-                [(ngModel)]="form.username"
-                required
-                minlength="3"
-                maxlength="20"
-                #username="ngModel" placeholder="Name" />
-                <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                  <div *ngIf="username.errors.required">Username is required</div>
-                  <div *ngIf="username.errors.minlength">
-                    Username must be at least 3 characters
-                  </div>
-                  <div *ngIf="username.errors.maxlength">
-                    Username must be at most 20 characters
-                  </div>
-                </div>
+                placeholder="Name"
+                [ngClass]="{'is-invalid' : uf['username'].errors, 'is-valid' : !uf['username'].errors}" />
               </div>
             </div>
             <div class="form-group">
@@ -74,19 +63,14 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input           type="email"
+                <input
+                formControlName="email"
+                       type="email"
                 class="form-control"
                 name="email"
-                [(ngModel)]="form.email"
-                required
-                email
-                #email="ngModel" placeholder="Email" />
-                <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                  <div *ngIf="email.errors.required">Email is required</div>
-                  <div *ngIf="email.errors.email">
-                    Email must be a valid email address
-                  </div>
-                </div>
+                [ngClass]="{'is-invalid' : uf['email'].errors, 'is-valid' : !uf['email'].errors}"
+                 placeholder="Email" />
+
               </div>
             </div>
             <div class="form-group">
@@ -94,35 +78,36 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input  placeholder="Password"   type="password"
+                <input
+                formControlName="password"
+                placeholder="Password"   type="password"
                 class="form-control"
                 name="password"
-                [(ngModel)]="form.password"
-                required
-                minlength="6"
-                #password="ngModel" />
-                <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">
-                    Password must be at least 6 characters
-                  </div>
-                </div>
+                [ngClass]="{'is-invalid' : uf['password'].errors, 'is-valid' : !uf['password'].errors}"
+                 />
+
               </div>
             </div>
 
             <div class="form-group">
             <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4" (click)="onSubmit()">Create account</button>
+              <button
+              type="submit"
+              class="btn btn-sm btn-success"
+              [disabled]="!registryForm.valid"
+            >
+              Registry
+            </button>
+            <button
+              (click)="resetForm()"
+              class="btn btn-sm btn-secondary"
+            >
+              Cancel
+            </button>
             </div>
-            </div>
-
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
-      </div>
-          </form>
-          <div class="alert alert-success" *ngIf="isSuccessful">
-            Your registration is successful!
           </div>
+
+          </form>
         </div>
       </div>
       <div class="row mt-3">

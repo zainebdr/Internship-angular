@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Etudiant } from 'src/app/core/model/etudiant';
 import { EtudiantsService } from 'src/app/core/service/etudiant.service';
+import { TokenStorageService } from 'src/app/core/service/token-storage.service';
 
 @Component({
   selector: 'app-list-etudiant-contrat',
@@ -21,29 +22,23 @@ export class ListEtudiantContratComponent implements OnInit {
   public etudlist: Etudiant
   public etudiantList: Etudiant[]
   public prenomE: string
-  constructor(public   contratService:ContratService, public etudiantService:EtudiantsService, private route: ActivatedRoute,  private modalService: NgbModal,public toast: ToastrService,) { }
+  currentUser: any;
+  constructor(public   contratService:ContratService, public etudiantService:EtudiantsService, private route: ActivatedRoute,  private modalService: NgbModal,public toast: ToastrService,private token: TokenStorageService) { }
 
 
 
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
+
 
     this.getContrats();
 
     this.contrat= new Contrat()
     this.contrat= new Contrat()
-    console.log(this.getContrats())
-    this.getEtudiants();
 
-  }
-  getEtudiants() {
-    this.etudiantService.getAllEtudiants().subscribe( (data:Etudiant[])=>
-    {for(let i=0;i<this.etudiantList.length;i++){
-      
-      this.etudiantList=data;
-        console.log("hedha l etudiant",this.etudiantList=data)
-      }}
-    )
+
+
   }
 
   open(content) {
@@ -63,20 +58,7 @@ export class ListEtudiantContratComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  onSubmit(form: NgForm) {
 
-    console.log(form.value)
-    console.log(this.prenomE)
-    this.contratService.addContrat(form.value,this.prenomE).subscribe((res) => {
-      this.resetForm(form)
-     this.refreshCandidatList();
-
-     const toast = this.toast.success('saved successfully', 'done', {
-      timeOut: 3000,
-    });
-      this.modalService.dismissAll();
-    });
-  }
   resetForm(form?: NgForm) {
     if (form) form.reset();
     this.contratService.selectedContrat = {
@@ -92,7 +74,7 @@ export class ListEtudiantContratComponent implements OnInit {
 
   refreshCandidatList() {
 
-    this.contratService.getAllContrat().subscribe( (data:Contrat[])=>
+    this.contratService.getAllContratEtud(this.currentUser.username).subscribe( (data:Contrat[])=>
     {
 
         console.log(this.list=data)
@@ -113,12 +95,19 @@ export class ListEtudiantContratComponent implements OnInit {
 
   }
 
-  delete(p: Contrat) {
-    if (confirm('Are you sure to delete this record ?') == true) {
-    let i = this.list.indexOf(p);
-    this.contratService.deleteContratbyId(p.idContrat).subscribe(
-      ()=>this.list.splice(i, 1)
+
+
+  getContratsEtud():void{
+    console.log(this.currentUser.username)
+    this.contratService.getAllContratEtud(this.currentUser.username).subscribe( (data:Contrat[])=>
+    {
+
+        console.log(this.list=data)
+      }
     )
-    }
+
   }
+
+
+
 }

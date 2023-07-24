@@ -65,6 +65,7 @@ export class DepartementformComponent implements OnInit {
           } else {
             this.route.navigate(['/departement']);
           }
+          
         },
         () => {
           this.addedResult.emit('error'), () => {};

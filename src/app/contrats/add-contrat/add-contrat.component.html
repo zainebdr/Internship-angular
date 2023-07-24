@@ -1,0 +1,99 @@
+
+    <form #contratForm="ngForm"  >
+
+
+      <div class="form-group">
+        <label> date debut </label>
+        <div class="input-group">
+          <input
+            type="date"
+
+            name="dateDebutContrat"
+            #dateDebutContrat="ngModel"
+            [(ngModel)]="contrat.dateDebutContrat"
+
+
+            class="form-control"
+
+          />
+
+          <!-- <div class="alert alert-danger" *ngIf="dateDebutContrat.invalid && dateDebutContrat.touched">
+            <div *ngIf="dateDebutContrat.hasError('required')">this field is required</div> -->
+
+        </div>
+        <div  class="alert alert-danger" *ngIf="contrat.dateFinContrat<contrat.dateDebutContrat"> la date fin doit etre inferieur à la date début</div>
+        <div  class="alert alert-danger" *ngIf="dateDebutContrat.touched">required</div>
+      </div>
+
+
+      <div class="form-group">
+        <label> date fin </label>
+        <div class="input-group">
+          <input
+            type="date"
+            name="dateFinContrat"
+            #dateFinContrat="ngModel"
+            [(ngModel)]="contrat.dateFinContrat"
+
+            class="form-control"
+
+          />
+
+        </div>
+      <!-- //  <div  class="alert alert-danger" *ngIf="dateFinContrat.touched">required</div> -->
+      </div>
+
+
+      <label class="custom-toggle">
+        <input type="checkbox"
+        name="archive"
+        #archive="ngModel"
+        [(ngModel)]="contrat.archive"
+        id="archive"
+
+        >
+        <span class="custom-toggle-slider rounded-circle"> </span>
+        <label style="margin-left: 110%
+  ;"
+        >archive</label>
+      </label>
+
+      <div class="form-group">
+        <label>specialite</label>
+        <select name="specialite" [(ngModel)]="contrat.specialite" class="form-control" type="text">
+          <option value="IA">IA</option>
+          <option value="RESEAUX">RESEAUX</option>
+          <option value="CLOUD">CLOUD</option>
+          <option value="SECURITE">SECURITE</option>
+      </select>
+
+      </div>
+     
+
+      <div class="form-group">
+        <div class="input-field col s12">
+          <button
+            style="background: #5e72e4; color: white"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            class="btn btn-custom right"
+            (click)="onSubmit(contratForm)"
+            [disabled]="!contratForm.valid"
+
+          >
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </form>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-custom right"
+      type="button"
+
+    >
+      Reset
+    </button>
+
+  </div>

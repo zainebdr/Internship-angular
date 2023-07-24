@@ -111,12 +111,7 @@
           class="d-flex justify-content-lg-around card-header bg-transparent border-0"
         >
           <h3 class="text-white mb-0">{{ title }}</h3>
-          <button
-            class="btn btn-round btn-info"
-            [routerLink]="['/equipes/add']"
-          >
-            ADD
-          </button>
+
         </div>
 
         <div class="table-responsive">
@@ -133,7 +128,7 @@
                 </th>
                 <th scope="col">niveau Equipe</th>
                 <th scope="col">Detail Equipe</th>
-                <th scope="col">Action</th>
+<th></th>
               </tr>
             </thead>
             <tbody>
@@ -150,23 +145,8 @@
                 <td>{{ e.detailEquipe1.idEqp }}</td>
                 <td>
                   &nbsp;
-                  <button
-                    class="btn btn-sm btn-danger"
-                    (click)="deleteEquipe(e)"
-                  >
-                    delete
-                  </button>
-                  &nbsp;
-                  <a
-                    class="btn btn-sm btn-warning"
-                    [routerLink]="[
-                      '/equipes/updateEqp',
-                      e.idEquipe,
-                      e.detailEquipe1.idEqp
-                    ]"
-                  >
-                    update
-                  </a>
+
+
                   &nbsp;
                   <i
                     class="fa fa-info-circle fa-2x"

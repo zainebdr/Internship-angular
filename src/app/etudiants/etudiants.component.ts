@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Etudiant } from '../core/model/Etudiants';
 import { EtudiantsService } from '../core/service/etudiants.service';
@@ -14,19 +15,24 @@ export class EtudiantsComponent implements OnInit {
   searchValue:string ='';
   public etudiantCount?: number;
   public pourcentage: String
+  public chooseContrat:any
 
-  constructor(private EtudService:EtudiantsService, public toast: ToastrService) { }
+
+
+  @ViewChild('content') addview !: ElementRef
+
+  constructor(private EtudService:EtudiantsService,private modalService: NgbModal, public toast: ToastrService) { }
 
   ngOnInit(): void {
 
-    
+
 
     this.showlistEtud()
     this.EtudService.Refreshrequired.subscribe(r=>{
-  
+
       this.showlistEtud()
     })
-   
+
     this.EtudService.countEtudiant().subscribe((count) => {
       this.etudiantCount = count;
       console.log(count);
@@ -43,9 +49,9 @@ export class EtudiantsComponent implements OnInit {
       (data:Etudiant[])=>{
         console.log(this.listEtudiant=data)
         this.listEtudiant=data;
-          
-      } 
-      
+
+      }
+
     )
     }
   deleteEtid(etu:Etudiant){
@@ -66,15 +72,41 @@ export class EtudiantsComponent implements OnInit {
     this.searchText=sv;
     console.log(this.searchText);
   }
-  
+
 trier():void{
   this.EtudService.trie().subscribe(
     (data:Etudiant[])=>{
      this.listEtudiant=data
     }
-    
+
     )
 }
 p:number = 1;
+
+
+
+rep(msg)
+{
+
+  this.toast.success("Ajout Contrat: "+ msg, "succès")
+}
+
+
+
+open() {
+  this.modalService.open(this.addview).result.then((result) => {
+  }, (reason) => {
+    console.log("ena"+reason);
+  });
+}
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return `with: ${reason}`;
+  }
+}
 
 }
