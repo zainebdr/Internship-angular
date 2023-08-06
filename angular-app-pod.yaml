@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: angular-app-pod
+spec:
+  containers:
+    - name: angular-appliaction
+      image: zaienbdr/angular-application:v1 # Other configurations for the simple container
+      ports:
+        - containerPort: 4200

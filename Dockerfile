@@ -2,7 +2,6 @@
 FROM node:14
 # Set the working directory
 WORKDIR /app
-ENV PATH /usr/src/app/node_modules/.bin;$PATH
 COPY . .
 # Install dependencies
 #RUN npm install 
@@ -10,8 +9,8 @@ COPY . .
 EXPOSE 4200        
 # Build the Angular app 
 RUN npm install -g npm@latest
-#RUN npm run build
-
+RUN npm install -g @angular/cli
+#RUN npm install
 # Command to start the Angular app
 #CMD ["npm", "start"]
 #ENTRYPOINT ["npm", "start"]

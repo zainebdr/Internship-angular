@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-appliaction
+  template:
+    metadata:
+      labels:
+        app: angular-appliaction
+    spec:
+      containers:
+        - name: angular-appliaction
+          image: zaienbdr/angular-application:v1
+          ports:
+            - containerPort: 4200
