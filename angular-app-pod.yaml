@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  labels :
+    app : angular-appliaction
   name: angular-app-pod
 spec:
   containers:

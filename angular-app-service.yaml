@@ -7,6 +7,6 @@ spec:
     app : angular-appliaction
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 4200
+      port: 4200
+      nodePort: 31234 
   type: NodePort
