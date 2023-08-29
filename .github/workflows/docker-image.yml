@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Build the Docker image
+      run : | 
+        echo 'docker file ' 
+        docker build -t zaienbdr/angular-application:v1:${GITHUB_RUN_NUMBER} .
+    - name: Push Docker Image
+      run: |
+        echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u zaienbDR --password-stdin
+        docker push zaienbdr/angular-application:v1:${GITHUB_RUN_NUMBER} 
