@@ -10,6 +10,7 @@ pipeline {
                 mvn --verison
                
                 '''
+                echo 'teest ' 
             }
         }
     }
