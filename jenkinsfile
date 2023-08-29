@@ -14,7 +14,8 @@ pipeline {
                 // In this stage, you can generate your Dockerfile or use an existing one
                 script {
                     // Create or copy your Dockerfile to the workspace
-                    sh 'cp Dockerfile .'
+                 //   sh 'cp Dockerfile .'
+                  echo 'docker file '
                 }
             }
         }
