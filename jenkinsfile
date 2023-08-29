@@ -1,17 +1,46 @@
 pipeline {
-    agent {
-        dockerfile true
-    }
-    stages{
-        stage ("Test")
-        {
-            steps{
-                sh'''
-                mvn --verison
-               
-                '''
-                echo 'teest ' 
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from your GitHub repository
+                checkout scm
             }
+        }
+        
+        stage('Generate Dockerfile') {
+            steps {
+                // In this stage, you can generate your Dockerfile or use an existing one
+                script {
+                    // Create or copy your Dockerfile to the workspace
+                    sh 'cp Dockerfile .'
+                }
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                // Build the Docker image using the generated Dockerfile
+                sh 'docker build -t zaienbdr/angular-application:v1:${BUILD_NUMBER} .'
+            }
+        }
+        
+        stage('Push Docker Image') {
+            steps {
+                // Push the Docker image to a Docker registry (replace with your registry URL)
+                withCredentials([usernamePassword(credentialsId: 'ZainebDrira0505', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD zaienbdr'
+                    sh 'docker push zaienbdr/angular-application:v1:${BUILD_NUMBER}'
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Clean up after the build
+            deleteDir()
         }
     }
 }
