@@ -33,7 +33,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Build the Docker image using the generated Dockerfile
-                sh 'docker build -t zaienbdr/angular-application:v1:${BUILD_NUMBER} .'
+                sh 'docker build -t zaienbdr/angular-application:${BUILD_NUMBER} .'
             }
         }
         
