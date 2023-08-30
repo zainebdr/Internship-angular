@@ -43,7 +43,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 // Push the Docker image to a Docker registry 
-               withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'ZainebDrira0505', usernameVariable: 'dockerhub-creds')]) {
+               withCredentials([string(credentialsId: 'dockerhub-creds', variable: 'dockerhub-creds')]) {
 
                     sh 'docker login -u zaienbDR -p ${dockerhub-creds} '
                     sh 'docker push zaienbdr/angular-application:${BUILD_NUMBER}'
