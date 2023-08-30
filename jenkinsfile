@@ -43,8 +43,9 @@ pipeline {
                 // Push the Docker image to a Docker registry 
                 withCredentials([string(credentialsId: 'zaienbdr', variable: 'dockerhubcreds')]) 
     {
-                    sh 'echo "$dockerhubcreds" | docker login -u zaienbDR --password-stdin'
-                    sh 'docker login -u zaienbdr -p ${dockerhubcreds} '
+                    sh 'echo "$dockerhubcreds" | docker login -u zaienbdr --password-stdin'
+                   // sh 'docker login -u zaienbdr -p ${dockerhubcreds} '
+sh'docker login -u zaienbdr -p ZainebDrira0505'
                     sh 'docker push zaienbdr/angular-application:${BUILD_NUMBER}'
                   
                 }
