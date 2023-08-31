@@ -34,7 +34,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Build the Docker image using the generated Dockerfile
-                sh 'docker build -t zaienbdr/angular-application:${BUILD_NUMBER} .'
+                sh 'docker build -t zaienbdr/angular-application zaienbdr/Target-angular-application:${BUILD_NUMBER} .'
+                sh 'docker tag zaienbdr/angular-application:${BUILD_NUMBER} .'
             }
         }
         
@@ -45,8 +46,16 @@ pipeline {
     {
                     sh 'echo "$dockerhubcreds" | docker login -u zaienbdr --password-stdin'
                    // sh 'docker login -u zaienbdr -p ${dockerhubcreds} '
-sh'docker login -u zaienbdr -p ZainebDrira0505'
+                    sh'docker login -u zaienbdr -p ZainebDrira0505'
                     sh 'docker push zaienbdr/angular-application:${BUILD_NUMBER}'
+                  
+                }
+            }
+        }
+    stage('Deploy') {
+            steps {
+               script {
+                 sh 'docker run -d --name deploy-test -p 8080:8070 zaienbdr/angular-application:${BUILD_NUMBER}'
                   
                 }
             }
