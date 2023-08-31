@@ -34,8 +34,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Build the Docker image using the generated Dockerfile
-                sh 'docker build -t zaienbdr/angular-application zaienbdr/Target-angular-application:${BUILD_NUMBER} .'
-                sh 'docker tag zaienbdr/angular-application:${BUILD_NUMBER} .'
+                sh 'docker build -t zaienbdr/angular-application .'
+                sh 'docker tag zaienbdr/angular-application zaienbdr/Target-angular-application:${BUILD_NUMBER} .'
             }
         }
         
